@@ -1,0 +1,124 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { RandomLetterSwap } from '@/components/ui/random-letter-swap';
+
+interface NavbarProps {
+  onNavigateToSection?: (sectionId: string) => void;
+}
+
+interface NavItem {
+  id: string;
+  label: string;
+  targetId: string;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({
+  onNavigateToSection
+}) => {
+  const [isVisible, setIsVisible] = useState(true);
+  const [activeSection, setActiveSection] = useState<string>('hero');
+  const lastScrollYRef = useRef(0);
+
+  const navItems: NavItem[] = [
+    { id: 'hero', label: 'الرئيسية', targetId: 'hero' },
+    { id: 'services', label: 'الخدمات', targetId: 'services' },
+  ];
+
+  // Smart Auto-Hide on Scroll Down & Reveal on Scroll Up + Active Section Tracker
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const delta = currentScrollY - lastScrollYRef.current;
+
+          // Auto-hide logic
+          if (currentScrollY <= 25) {
+            setIsVisible(true);
+          } else if (delta > 5 && currentScrollY > 60) {
+            setIsVisible(false);
+          } else if (delta < -5) {
+            setIsVisible(true);
+          }
+
+          lastScrollYRef.current = currentScrollY;
+
+          // Track active section based on scroll position
+          const sections = ['hero', 'services'];
+          for (let i = sections.length - 1; i >= 0; i--) {
+            const sec = document.getElementById(sections[i]);
+            if (sec) {
+              const rect = sec.getBoundingClientRect();
+              if (rect.top <= window.innerHeight * 0.45) {
+                setActiveSection(sections[i]);
+                break;
+              }
+            }
+          }
+
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleItemClick = (item: NavItem) => {
+    if (onNavigateToSection) {
+      onNavigateToSection(item.targetId);
+    } else {
+      if (item.targetId === 'hero') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const el = document.getElementById(item.targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  };
+
+  return (
+    <header
+      className={`fixed top-5 sm:top-7 left-0 right-0 z-50 flex items-center justify-center font-yamama px-4 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        isVisible
+          ? 'translate-y-0 opacity-100'
+          : '-translate-y-24 opacity-0 pointer-events-none'
+      }`}
+    >
+      {/* Pure Centered Text Navigation with RandomLetterSwap Spring Animation */}
+      <nav className="relative flex items-center justify-center gap-6 sm:gap-9 md:gap-12 px-6 py-2 select-none">
+        {navItems.map((item) => {
+          const isActive = activeSection === item.targetId;
+
+          return (
+            <div key={item.id} className="relative flex flex-col items-center">
+              <RandomLetterSwap
+                label={item.label}
+                onClick={() => handleItemClick(item)}
+                staggerDuration={0.03}
+                transition={{ duration: 0.5, type: "spring", stiffness: 300, damping: 22 }}
+                className={`text-sm sm:text-base md:text-lg font-semibold tracking-normal transition-all duration-300 ${
+                  isActive
+                    ? 'text-[#F5D033] font-bold drop-shadow-[0_0_14px_rgba(245,208,51,0.7)] scale-105'
+                    : 'text-zinc-400 hover:text-white'
+                }`}
+              />
+
+              {/* Golden Laser Underline for active section */}
+              {isActive && (
+                <span className="absolute -bottom-2 w-full h-[2px] bg-gradient-to-r from-transparent via-[#F5D033] to-transparent rounded-full shadow-[0_0_12px_rgba(245,208,51,0.9)] animate-pulse" />
+              )}
+            </div>
+          );
+        })}
+      </nav>
+    </header>
+  );
+};
+
+export default Navbar;
