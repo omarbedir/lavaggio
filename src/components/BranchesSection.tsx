@@ -19,7 +19,7 @@ export const BranchesSection: React.FC = () => {
           className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F5D033]/10 border border-[#F5D033]/25 text-[#F5D033] text-xs font-bold mb-4 backdrop-blur-md"
         >
           <Sparkles className="w-3.5 h-3.5 text-[#F5D033]" />
-          <span>فروع لافاجيو في قطر • نتشرف بزيارتكم</span>
+          <span>فروع لافيجيو في قطر • نتشرف بزيارتكم</span>
         </motion.div>
 
         {/* Section Heading */}
@@ -120,7 +120,7 @@ export const BranchesSection: React.FC = () => {
                 {/* WhatsApp Direct Chat */}
                 <a
                   href={`https://wa.me/${branch.whatsapp}?text=${encodeURIComponent(
-                    `مرحباً لافاجيو، أود الاستفسار وحجز موعد في ${branch.name}`
+                    `مرحباً لافيجيو، أود الاستفسار وحجز موعد في ${branch.name}`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"

@@ -241,7 +241,7 @@ export const SpecsSection: React.FC = () => {
             اختبر تجربة القيادة الأسطورية
           </h3>
           <p className="text-xs sm:text-sm text-zinc-400 max-w-lg mb-8 font-normal leading-relaxed">
-            تواصل مع مستشاري لافاجيو لتخصيص نسختك الخاصة من مرسيدس-AMG G 63 بتفاصيل استثنائية مصممة خصيصاً لك.
+            تواصل مع مستشاري لافيجيو لتخصيص نسختك الخاصة من مرسيدس-AMG G 63 بتفاصيل استثنائية مصممة خصيصاً لك.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3">
@@ -263,7 +263,7 @@ export const SpecsSection: React.FC = () => {
         {/* Minimalist Apple Footer */}
         <footer className="w-full pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 font-normal">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-white">لافاجيو G 63</span>
+            <span className="font-bold text-white">لافيجيو G 63</span>
             <span>• جميع الحقوق محفوظة © {new Date().getFullYear()}</span>
           </div>
 

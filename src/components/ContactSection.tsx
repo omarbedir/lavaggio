@@ -27,7 +27,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
     // Construct formatted WhatsApp message
     const message = encodeURIComponent(
-      `*طلب حجز موعد جديد من موقع لافاجيو LAVAGGIO*\n` +
+      `*طلب حجز موعد جديد من موقع لافيجيو LAVAGGIO*\n` +
       `---------------------------------\n` +
       `👤 *الاسم:* ${formData.name}\n` +
       `📱 *رقم الهاتف:* ${formData.phone}\n` +
@@ -78,7 +78,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
             احجز موعدك لتدليل وحماية سيارتك
           </h2>
           <p className="text-sm sm:text-base text-zinc-400 mt-4 leading-relaxed font-normal">
-            املأ النموذج أدناه لتأكيد حجزك في فرع طريق سلوى أو العزيزية، وسيقوم فريق لافاجيو بالتواصل معك فوراً لتقديم أفضل عرض.
+            املأ النموذج أدناه لتأكيد حجزك في فرع طريق سلوى أو العزيزية، وسيقوم فريق لافيجيو بالتواصل معك فوراً لتقديم أفضل عرض.
           </p>
         </motion.div>
 
@@ -100,7 +100,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   تم إرسال طلب الحجز بنجاح!
                 </h3>
                 <p className="text-xs sm:text-sm text-zinc-300 max-w-md mb-6 leading-relaxed">
-                  تم تحويلك إلى واتساب لتأكيد تفاصيل الموعد مع مستشار خدمة لافاجيو فوراً.
+                  تم تحويلك إلى واتساب لتأكيد تفاصيل الموعد مع مستشار خدمة لافيجيو فوراً.
                 </p>
                 <button
                   onClick={() => setIsSubmitted(false)}
@@ -273,7 +273,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 الخط الساخن للمبيعات والاستقبال
               </h3>
               <p className="text-xs text-zinc-300 mb-6 leading-relaxed font-normal">
-                مستشارو لافاجيو جاهزون للرد على كافة استفساراتكم خلال أوقات الدوام الرسمي.
+                مستشارو لافيجيو جاهزون للرد على كافة استفساراتكم خلال أوقات الدوام الرسمي.
               </p>
               <div className="space-y-2.5">
                 <a

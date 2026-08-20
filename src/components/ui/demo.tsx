@@ -37,11 +37,11 @@ export default function DemoOne() {
       sections={sections}
       header={
         <div className="font-yamama">
-          <div className="text-sm font-bold text-[#F5D033] tracking-wider mb-1">لافاجيو لخدمات السيارات</div>
+          <div className="text-sm font-bold text-[#F5D033] tracking-wider mb-1">لافيجيو لخدمات السيارات</div>
           <div className="text-3xl font-black text-white">منظومة الخدمات المتكاملة</div>
         </div>
       }
-      footer={<div className="text-xs font-semibold text-zinc-400 font-yamama">اسحب للتنقل بين الخدمات • لافاجيو</div>}
+      footer={<div className="text-xs font-semibold text-zinc-400 font-yamama">اسحب للتنقل بين الخدمات • لافيجيو</div>}
       showProgress
       durations={{ change: 0.7, snap: 800 }}
     />

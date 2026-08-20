@@ -34,7 +34,7 @@ export const AboutSection: React.FC = () => {
           className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F5D033]/10 border border-[#F5D033]/25 text-[#F5D033] text-xs font-bold mb-4 backdrop-blur-md"
         >
           <Sparkles className="w-3.5 h-3.5 text-[#F5D033]" />
-          <span>من نحن • قصة لافاجيو LAVAGGIO</span>
+          <span>من نحن • قصة لافيجيو LAVAGGIO</span>
         </motion.div>
 
         {/* Section Heading */}
@@ -49,7 +49,7 @@ export const AboutSection: React.FC = () => {
             رواد العناية الفائقة وحماية السيارات الفاخرة
           </h2>
           <p className="text-sm sm:text-base text-zinc-400 mt-4 leading-relaxed font-normal">
-            في <span className="text-[#F5D033] font-bold">لافاجيو (LAVAGGIO)</span>، نرتقي بمعايير العناية بالسيارات لنمنح مركبتك درعاً حصيناً يجمع بين الجمال البصري الفائق والصلابة التي تدوم لسنوات بأعلى المعايير الأمريكية.
+            في <span className="text-[#F5D033] font-bold">لافيجيو (LAVAGGIO)</span>، نرتقي بمعايير العناية بالسيارات لنمنح مركبتك درعاً حصيناً يجمع بين الجمال البصري الفائق والصلابة التي تدوم لسنوات بأعلى المعايير الأمريكية.
           </p>
         </motion.div>
 

@@ -1,6 +1,6 @@
-# Lavaggio - G Series
+# لافيجيو (Lavaggio) - G Series
 
-A premium web application for Lavaggio car detailing and services.
+A premium web application for Lavaggio (لافيجيو) car detailing and services.
 
 ## Tech Stack
 

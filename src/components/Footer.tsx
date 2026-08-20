@@ -58,7 +58,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a href="#services" className="hover:text-white transition-colors">
-                  خدمات لافاجيو
+                  خدمات لافيجيو
                 </a>
               </li>
               <li>
@@ -120,7 +120,7 @@ export const Footer: React.FC = () => {
         <div className="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
           <div>
             <span>جميع الحقوق محفوظة © {new Date().getFullYear()} لمركز </span>
-            <strong className="text-[#F5D033]">لافاجيو (LAVAGGIO AUTO CARE)</strong>
+            <strong className="text-[#F5D033]">لافيجيو (LAVAGGIO AUTO CARE)</strong>
             <span> • الدوحة، قطر</span>
           </div>
 

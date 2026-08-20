@@ -92,7 +92,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
 
   const handleWhatsAppInquiry = (service: ServiceItem) => {
     const text = encodeURIComponent(
-      `مرحباً لافاجيو، أود الاستفسار وحجز خدمة: ${service.title}`
+      `مرحباً لافيجيو، أود الاستفسار وحجز خدمة: ${service.title}`
     );
     window.open(`https://wa.me/97444556677?text=${text}`, '_blank');
   };

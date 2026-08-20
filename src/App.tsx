@@ -88,7 +88,7 @@ export function App() {
   }, []);
 
   const handleSelectServiceForBooking = useCallback((serviceTitle: string) => {
-    const text = encodeURIComponent(`مرحباً لافاجيو، أود الاستفسار وحجز خدمة: ${serviceTitle}`);
+    const text = encodeURIComponent(`مرحباً لافيجيو، أود الاستفسار وحجز خدمة: ${serviceTitle}`);
     window.open(`https://wa.me/97444556677?text=${text}`, '_blank');
   }, []);
 

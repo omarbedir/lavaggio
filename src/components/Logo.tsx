@@ -21,7 +21,7 @@ export const Logo: React.FC<LogoProps> = ({
     >
       <img
         src="/logo-badge.png"
-        alt="لافاجيو LAVAGGIO"
+        alt="لافيجيو LAVAGGIO"
         className="h-full w-auto object-contain rounded-2xl"
       />
     </div>
