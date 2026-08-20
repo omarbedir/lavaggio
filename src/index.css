@@ -22,6 +22,19 @@
     -moz-osx-font-smoothing: grayscale;
     direction: rtl;
     text-align: right;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+
+  /* Fix mobile viewport height */
+  html {
+    height: -webkit-fill-available;
+  }
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
   }
 
   /* Custom minimalist scrollbar with brand yellow/red accents */
@@ -37,6 +50,17 @@
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #F5D033;
+  }
+
+  /* Hide scrollbar on mobile for cleaner look */
+  @media (max-width: 640px) {
+    ::-webkit-scrollbar {
+      width: 0px;
+      display: none;
+    }
+    body {
+      scrollbar-width: none;
+    }
   }
 }
 
@@ -71,6 +95,11 @@
     background: linear-gradient(135deg, #FBE06B 0%, #F5D033 100%);
     transform: translateY(-1px);
     box-shadow: 0 6px 25px rgba(245, 208, 51, 0.4);
+  }
+  /* Touch-friendly active state for mobile */
+  .apple-button-primary:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 10px rgba(245, 208, 51, 0.3);
   }
 
   .apple-button-red {
@@ -113,6 +142,16 @@
 
   .text-glow-red {
     text-shadow: 0 0 30px rgba(179, 24, 36, 0.6);
+  }
+
+  /* Horizontal scrollable filter tabs on mobile */
+  .mobile-scroll-tabs {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .mobile-scroll-tabs::-webkit-scrollbar {
+    display: none;
   }
 }
 

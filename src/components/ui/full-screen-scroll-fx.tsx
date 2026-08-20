@@ -476,7 +476,7 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
 
                   {/* Main Content Body */}
                   <div className="fx-body">
-                    {/* Left List Track */}
+                    {/* Left List Track (Desktop only) */}
                     <div className="fx-left-col" role="list">
                       <div className="fx-track" ref={leftTrackRef}>
                         {sections.map((s, i) => (
@@ -503,6 +503,13 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
                           ref={(el) => el && (centerRefs.current[sIdx] = el)}
                           className="fx-featured-card"
                         >
+                          {/* Mobile Sleek Category & Warranty Badge Chip */}
+                          <div className="fx-mobile-badge">
+                            <span className="fx-mobile-badge-tag">{s.leftLabel}</span>
+                            <span className="fx-mobile-badge-dot">•</span>
+                            <span className="fx-mobile-badge-sub">{s.rightLabel}</span>
+                          </div>
+
                           <h3 className="fx-title">
                             {s.title}
                           </h3>
@@ -516,7 +523,7 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
                       ))}
                     </div>
 
-                    {/* Right List Track */}
+                    {/* Right List Track (Desktop only) */}
                     <div className="fx-right-col" role="list">
                       <div className="fx-track" ref={rightTrackRef}>
                         {sections.map((s, i) => (
@@ -534,6 +541,20 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
                         ))}
                       </div>
                     </div>
+                  </div>
+
+                  {/* Mobile Interactive Progress Dots */}
+                  <div className="fx-mobile-dots" role="tablist">
+                    {sections.map((s, i) => (
+                      <button
+                        key={`dot-${i}`}
+                        type="button"
+                        onClick={() => goTo(i, true)}
+                        className={`fx-dot ${i === index ? "active" : ""}`}
+                        aria-label={typeof s.title === 'string' ? s.title : `الخدمة ${i + 1}`}
+                        title={typeof s.title === 'string' ? s.title : undefined}
+                      />
+                    ))}
                   </div>
 
                   {/* Optional Footer */}
@@ -737,6 +758,14 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
           .fx-left-item.active::before { left: 0; }
           .fx-right-item.active::after { right: 0; }
 
+          /* Desktop default elements */
+          .fx-mobile-badge {
+            display: none;
+          }
+          .fx-mobile-dots {
+            display: none;
+          }
+
           /* Center Service Content */
           .fx-center-col {
             flex: 1;
@@ -771,7 +800,8 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
             font-size: clamp(2rem, 4vw, 3.8rem);
             line-height: 1.18;
             white-space: normal;
-            word-break: keep-all;
+            word-break: normal;
+            overflow-wrap: break-word;
             text-shadow: 0 10px 40px rgba(0,0,0,0.95), 0 0 25px rgba(245, 208, 51, 0.25);
           }
 
@@ -783,6 +813,8 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
             line-height: 1.65;
             font-weight: 500;
             white-space: normal;
+            word-break: normal;
+            overflow-wrap: break-word;
             text-shadow: 0 6px 20px rgba(0,0,0,0.95);
           }
 
@@ -795,28 +827,156 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
           }
           .fx-footer-title { color: var(--fx-text); font-size: clamp(0.85rem, 1.5vw, 1.1rem); font-weight: 600; }
 
+          /* Responsive Mobile & Tablet Styles (< 900px) */
           @media (max-width: 900px) {
-            .fx-body {
-              flex-direction: column;
-              justify-content: center;
-              gap: 1.5rem;
+            .fx-container {
+              padding: 4.25rem 1rem 1.25rem;
+              height: 100vh;
+              height: 100dvh;
+              justify-content: space-between;
             }
+
+            /* Hide heavy desktop side columns completely on mobile to prevent clutter and overlapping */
             .fx-left-col, .fx-right-col {
-              height: auto;
-              width: 100%;
-              align-items: center;
-              text-align: center;
-              mask-image: none;
-              -webkit-mask-image: none;
+              display: none !important;
             }
+
+            .fx-body {
+              width: 100%;
+              max-width: 100%;
+              flex: 1;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0;
+            }
+
             .fx-center-col {
+              width: 100%;
+              max-width: 100%;
               height: auto;
-              margin: 1rem 0;
+              min-height: 200px;
+              margin: 0;
+              padding: 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+
+            /* Elegant Frosted Glass Card on Mobile */
+            .fx-featured-card {
+              position: absolute;
+              width: calc(100% - 1rem);
+              max-width: 440px;
+              margin: 0 auto;
+              padding: 1.4rem 1.2rem;
+              border-radius: 1.6rem;
+              background: rgba(5, 5, 5, 0.45);
+              backdrop-filter: blur(20px);
+              -webkit-backdrop-filter: blur(20px);
+              border: 1px solid rgba(255, 255, 255, 0.1);
+              box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(245, 208, 51, 0.08);
+            }
+
+            /* Sleek Mobile Chip Badge */
+            .fx-mobile-badge {
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              gap: 8px;
+              margin-bottom: 10px;
+              padding: 4px 14px;
+              border-radius: 9999px;
+              background: rgba(245, 208, 51, 0.12);
+              border: 1px solid rgba(245, 208, 51, 0.35);
+              box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            }
+            .fx-mobile-badge-tag {
+              color: #F5D033;
+              font-weight: 800;
+              font-size: 0.8rem;
+            }
+            .fx-mobile-badge-dot {
+              color: rgba(255, 255, 255, 0.4);
+              font-size: 0.75rem;
+            }
+            .fx-mobile-badge-sub {
+              color: #ffffff;
+              font-weight: 600;
+              font-size: 0.8rem;
+            }
+
+            .fx-title {
+              font-size: clamp(1.45rem, 6.5vw, 2.2rem);
+              font-weight: 900;
+              line-height: 1.22;
+              margin-bottom: 8px;
+              word-break: normal;
+              overflow-wrap: break-word;
+              text-shadow: 0 4px 20px rgba(0,0,0,0.95);
+            }
+
+            .fx-subtitle {
+              font-size: clamp(0.8rem, 3.4vw, 0.98rem);
+              font-weight: 400;
+              line-height: 1.58;
+              max-width: 360px;
+              margin: 0;
+              word-break: normal;
+              overflow-wrap: break-word;
+              text-shadow: 0 2px 10px rgba(0,0,0,0.95);
+            }
+
+            /* Interactive Mobile Progress Dots */
+            .fx-mobile-dots {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 7px;
+              padding: 6px 14px;
+              border-radius: 9999px;
+              background: rgba(10, 10, 14, 0.7);
+              backdrop-filter: blur(16px);
+              -webkit-backdrop-filter: blur(16px);
+              border: 1px solid rgba(255, 255, 255, 0.1);
+              z-index: 10;
+              margin-bottom: 0.25rem;
+            }
+            .fx-dot {
+              width: 7px;
+              height: 7px;
+              border-radius: 9999px;
+              background: rgba(255, 255, 255, 0.25);
+              border: none;
+              padding: 0;
+              cursor: pointer;
+              transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .fx-dot.active {
+              width: 20px;
+              background: #F5D033;
+              box-shadow: 0 0 10px rgba(245, 208, 51, 0.9);
+            }
+          }
+
+          @media (max-width: 480px) {
+            .fx-container {
+              padding: 3.8rem 0.75rem 1rem;
             }
             .fx-featured-card {
-              position: relative;
+              padding: 1.2rem 1rem;
+              border-radius: 1.3rem;
             }
-            .fx-track { transform: none !important; }
+            .fx-title {
+              font-size: clamp(1.35rem, 6.5vw, 1.8rem);
+            }
+            .fx-subtitle {
+              font-size: clamp(0.75rem, 3.3vw, 0.9rem);
+              line-height: 1.52;
+            }
+            .fx-header img, .fx-header > div {
+              transform: scale(0.88);
+            }
           }
         `}</style>
       </div>

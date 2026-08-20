@@ -119,45 +119,47 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
       </div>
 
       {/* 2. Detailed Grid Showcase with Filter Tabs */}
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-8 py-20 sm:py-28 flex flex-col items-center border-t border-white/[0.08]">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-8 py-14 sm:py-28 flex flex-col items-center border-t border-white/[0.08]">
         {/* Section Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center max-w-3xl mb-12"
+          className="text-center max-w-3xl mb-8 sm:mb-12 px-2"
         >
-          <h3 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+          <h3 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
             اختر الخدمة المناسبة لسيارتك
           </h3>
-          <p className="text-sm sm:text-base text-zinc-400 mt-3 leading-relaxed font-normal">
+          <p className="text-xs sm:text-base text-zinc-400 mt-2 sm:mt-3 leading-relaxed font-normal">
             تجهيزات هندسية متطورة وضمانات رسمية موثقة مع فريق معتمد دولياً.
           </p>
         </motion.div>
 
-        {/* Filter Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-14">
-          {categories.map((cat) => {
-            const isActive = activeCategory === cat.id;
-            return (
-              <button
-                key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                className={`px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 ${
-                  isActive
-                    ? 'bg-[#F5D033] text-black shadow-glow-yellow scale-102 font-bold'
-                    : 'apple-card-glass text-zinc-400 hover:text-white hover:bg-white/[0.08]'
-                }`}
-              >
-                {cat.label}
-              </button>
-            );
-          })}
+        {/* Filter Tabs — horizontal scroll on mobile */}
+        <div className="w-full overflow-x-auto mobile-scroll-tabs mb-10 sm:mb-14 -mx-4 px-4 sm:mx-0 sm:px-0">
+          <div className="flex items-center justify-start sm:justify-center gap-2 min-w-max sm:min-w-0 sm:flex-wrap">
+            {categories.map((cat) => {
+              const isActive = activeCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={`px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 whitespace-nowrap ${
+                    isActive
+                      ? 'bg-[#F5D033] text-black shadow-glow-yellow scale-102 font-bold'
+                      : 'apple-card-glass text-zinc-400 hover:text-white hover:bg-white/[0.08]'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Services Grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 w-full">
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full">
           <AnimatePresence>
             {filteredServices.map((service) => (
               <motion.div
@@ -168,7 +170,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4 }}
                 whileHover={{ y: -6, borderColor: 'rgba(245, 208, 51, 0.45)' }}
-                className="apple-card-glass p-6 sm:p-7 rounded-3xl border border-white/10 flex flex-col justify-between text-right group transition-all duration-300 relative overflow-hidden"
+                className="apple-card-glass p-5 sm:p-7 rounded-2xl sm:rounded-3xl border border-white/10 flex flex-col justify-between text-right group transition-all duration-300 relative overflow-hidden"
               >
                 {/* Subtle top glow bar on hover */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#F5D033] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

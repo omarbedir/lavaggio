@@ -33,27 +33,25 @@ export const Navbar: React.FC<NavbarProps> = ({
           const currentScrollY = window.scrollY;
           const delta = currentScrollY - lastScrollYRef.current;
 
-          // Auto-hide logic
-          if (currentScrollY <= 25) {
+          // Auto-hide logic: stay visible near top or when scrolling up
+          if (currentScrollY <= 40) {
             setIsVisible(true);
-          } else if (delta > 5 && currentScrollY > 60) {
+          } else if (delta > 6 && currentScrollY > 100) {
             setIsVisible(false);
-          } else if (delta < -5) {
+          } else if (delta < -6) {
             setIsVisible(true);
           }
 
           lastScrollYRef.current = currentScrollY;
 
-          // Track active section based on scroll position
-          const sections = ['hero', 'services'];
-          for (let i = sections.length - 1; i >= 0; i--) {
-            const sec = document.getElementById(sections[i]);
-            if (sec) {
-              const rect = sec.getBoundingClientRect();
-              if (rect.top <= window.innerHeight * 0.45) {
-                setActiveSection(sections[i]);
-                break;
-              }
+          // Accurate active section tracking based on hero height
+          const heroEl = document.getElementById('hero');
+          if (heroEl) {
+            const heroHeight = heroEl.offsetHeight;
+            if (currentScrollY >= heroHeight * 0.7) {
+              setActiveSection('services');
+            } else {
+              setActiveSection('hero');
             }
           }
 
@@ -67,17 +65,16 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleItemClick = (item: NavItem) => {
+  const handleItemClick = (targetId: string) => {
     if (onNavigateToSection) {
-      onNavigateToSection(item.targetId);
+      onNavigateToSection(targetId);
     } else {
-      if (item.targetId === 'hero') {
+      if (targetId === 'hero') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        const el = document.getElementById(item.targetId);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-        }
+      } else if (targetId === 'services') {
+        const heroEl = document.getElementById('hero');
+        const targetY = heroEl ? heroEl.offsetHeight : 0;
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
       }
     }
   };
@@ -91,7 +88,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       }`}
     >
       {/* Pure Centered Text Navigation with RandomLetterSwap Spring Animation */}
-      <nav className="relative flex items-center justify-center gap-6 sm:gap-9 md:gap-12 px-6 py-2 select-none">
+      <nav className="relative flex items-center justify-center gap-7 sm:gap-10 md:gap-14 px-6 py-2 select-none">
         {navItems.map((item) => {
           const isActive = activeSection === item.targetId;
 
@@ -99,19 +96,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             <div key={item.id} className="relative flex flex-col items-center">
               <RandomLetterSwap
                 label={item.label}
-                onClick={() => handleItemClick(item)}
+                onClick={() => handleItemClick(item.targetId)}
                 staggerDuration={0.03}
                 transition={{ duration: 0.5, type: "spring", stiffness: 300, damping: 22 }}
-                className={`text-sm sm:text-base md:text-lg font-semibold tracking-normal transition-all duration-300 ${
+                className={`text-base sm:text-lg md:text-xl font-bold tracking-normal transition-all duration-300 ${
                   isActive
-                    ? 'text-[#F5D033] font-bold drop-shadow-[0_0_14px_rgba(245,208,51,0.7)] scale-105'
+                    ? 'text-[#F5D033] drop-shadow-[0_0_14px_rgba(245,208,51,0.7)] scale-105'
                     : 'text-zinc-400 hover:text-white'
                 }`}
               />
 
               {/* Golden Laser Underline for active section */}
               {isActive && (
-                <span className="absolute -bottom-2 w-full h-[2px] bg-gradient-to-r from-transparent via-[#F5D033] to-transparent rounded-full shadow-[0_0_12px_rgba(245,208,51,0.9)] animate-pulse" />
+                <span className="absolute -bottom-2 w-full h-[2.5px] bg-gradient-to-r from-transparent via-[#F5D033] to-transparent rounded-full shadow-[0_0_12px_rgba(245,208,51,0.9)] animate-pulse" />
               )}
             </div>
           );

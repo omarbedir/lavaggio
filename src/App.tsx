@@ -9,8 +9,17 @@ export function App() {
   const [loadedCount, setLoadedCount] = useState<number>(0);
   const [currentFrame, setCurrentFrame] = useState<number>(1);
   const [heroExitProgress, setHeroExitProgress] = useState<number>(0);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
   const imagesRef = useRef<HTMLImageElement[]>([]);
   const heroContainerRef = useRef<HTMLDivElement | null>(null);
+
+  // Detect mobile viewport
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Preload all 240 high-resolution 4K frames with async decoding
   useEffect(() => {
@@ -75,14 +84,20 @@ export function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Smooth scroll to target section
+  // Direct, reliable smooth scroll to target section
   const handleNavigateToSection = useCallback((sectionId: string) => {
     if (sectionId === 'hero') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (sectionId === 'services') {
+      const heroEl = document.getElementById('hero');
+      const targetY = heroEl ? heroEl.offsetHeight : 0;
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
     } else {
       const el = document.getElementById(sectionId);
       if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const targetY = el.getBoundingClientRect().top + scrollTop;
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
       }
     }
   }, []);
@@ -103,10 +118,10 @@ export function App() {
       {/* Navigation Bar: Pure Minimalist Centered Links (الرئيسية • الخدمات) */}
       <Navbar onNavigateToSection={handleNavigateToSection} />
 
-      {/* SECTION 1: Hero Dissection Track (الرئيسية - 450vh) */}
-      <div id="hero" ref={heroContainerRef} className="relative w-full min-h-[450vh]">
+      {/* SECTION 1: Hero Dissection Track (الرئيسية - adaptive height) */}
+      <div id="hero" ref={heroContainerRef} className={`relative w-full ${isMobile ? 'min-h-[280vh]' : 'min-h-[450vh]'}`}>
         {/* Sticky Viewport */}
-        <div className="sticky top-0 left-0 w-full h-screen h-[100dvh] overflow-hidden bg-[#050505] flex items-center justify-center">
+        <div className="sticky top-0 left-0 w-full h-[100dvh] overflow-hidden bg-[#050505] flex items-center justify-center">
           {/* Transforming Canvas Container with 3D Parallax Transition */}
           <div
             className="relative w-full h-full overflow-hidden transition-all duration-150 ease-out"
