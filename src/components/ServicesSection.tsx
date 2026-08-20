@@ -83,10 +83,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
     if (onSelectServiceForBooking) {
       onSelectServiceForBooking(service.title);
     } else {
-      const contactEl = document.getElementById('contact');
-      if (contactEl) {
-        contactEl.scrollIntoView({ behavior: 'smooth' });
-      }
+      handleWhatsAppInquiry(service);
     }
   };
 

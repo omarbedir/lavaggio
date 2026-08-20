@@ -14,8 +14,6 @@ export interface ArabicMilestone {
   highlights: string[];
 }
 
-export type Milestone = ArabicMilestone;
-
 export const ARABIC_MILESTONES: ArabicMilestone[] = [
   {
     id: 'part-one',
@@ -53,5 +51,4 @@ export const ARABIC_MILESTONES: ArabicMilestone[] = [
   }
 ];
 
-export const MILESTONES = ARABIC_MILESTONES;
 export const TOTAL_FRAMES = 240;

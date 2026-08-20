@@ -9,28 +9,6 @@ export interface ServiceItem {
   badge?: string;
 }
 
-export interface BrandItem {
-  id: string;
-  name: string;
-  origin: string;
-  badge: string;
-  description: string;
-  features: string[];
-  warranty: string;
-}
-
-export interface BranchItem {
-  id: string;
-  name: string;
-  area: string;
-  address: string;
-  phone: string;
-  whatsapp: string;
-  hours: string;
-  features: string[];
-  mapQuery: string;
-}
-
 export const LOVIGO_SERVICES: ServiceItem[] = [
   {
     id: 'ppf',
@@ -112,69 +90,5 @@ export const LOVIGO_SERVICES: ServiceItem[] = [
     badge: 'تقنية ألمانية',
     description: 'تعديل ضربات الباب وحبات البرد والانبعاجات بدقة ميكانيكية عبر أدوات ألمانية خاصة مع الحفاظ التام على صبغ الوكالة الأصلي.',
     features: ['الحفاظ على صبغ الوكالة وقيمة السيارة', 'إصلاح سريع في نفس اليوم', 'بدون معجون أو رش دهان', 'دقة استعادة المنحنيات بنسبة 100%']
-  }
-];
-
-export const LOVIGO_BRANDS: BrandItem[] = [
-  {
-    id: 'xpel',
-    name: 'XPEL USA',
-    origin: 'الولايات المتحدة الأمريكية',
-    badge: 'الرائد العالمي',
-    warranty: 'ضمان 10 سنوات عالمي',
-    description: 'العلامة التجارية الأمريكية الأولى عالمياً في صناعة أفلام حماية الطلاء PPF والعازل الحراري، الرائدة بتقنية المعالجة الذاتية.',
-    features: ['برنامج قص DAP الأحدث عالمياً', 'تقنية المعالجة الذاتية للخدوش', 'ضمان معتمد ضد التقشير والاصفرار']
-  },
-  {
-    id: 'suntek',
-    name: 'SunTek USA',
-    origin: 'الولايات المتحدة الأمريكية',
-    badge: 'أداء فائق',
-    warranty: 'ضمان حتى 10 سنوات',
-    description: 'أفلام حماية وعوازل حرارية أمريكية متطورة بتقنية النانو سيراميك، تضمن أعلى نسب عزل حراري وأقصى درجات النقاء البصري.',
-    features: ['عزل حراري هائل لبيئة الخليج القاسية', 'مقاومة قوية للصدمات والرمال', 'وضوح رؤية لا مثيل له']
-  },
-  {
-    id: 'avery',
-    name: 'Avery Dennison',
-    origin: 'الولايات المتحدة الأمريكية',
-    badge: 'قمة التجليد',
-    warranty: 'ضمان 5 سنوات',
-    description: 'الاسم الأشهر عالمياً في أفلام التجليد وتغيير الألوان (Supreme Wrapping Films) مع مئات التدرجات اللونية الحصرية والفريدة.',
-    features: ['تقنية Easy Apply لمنع الفقاعات', 'ملمس ناعم وجودة ألوان مبهرة', 'سهولة الإزالة مع الحفاظ على الطلاء']
-  },
-  {
-    id: 'reef-shield',
-    name: 'Reef Shield',
-    origin: 'أمريكي معتمد',
-    badge: 'حماية معززة',
-    warranty: 'ضمان 7 سنوات',
-    description: 'حلول حماية وأفلام عزل مصممة خصيصاً لتحمل أعلى درجات حرارة الشمس وسطوعها ومقاومة رمال الصحراء القاسية.',
-    features: ['تحمل درجات حرارة تتجاوز 55° مئوية', 'طبقة حماية مضاعفة من النانو تكنولوجي', 'مقاومة فائقة للخدوش والترسبات']
-  }
-];
-
-export const LOVIGO_BRANCHES: BranchItem[] = [
-  {
-    id: 'salwa',
-    name: 'فرع طريق سلوى (المقر الرئيسي)',
-    area: 'طريق سلوى - الدوحة',
-    address: 'طريق سلوى التجاري، مقابل محطة وقود، الدوحة، قطر',
-    phone: '+974 4455 6677',
-    whatsapp: '97444556677',
-    hours: 'السبت - الخميس: 8:30 ص - 10:00 م | الجمعة: 3:00 م - 10:00 م',
-    features: ['صالات عزل وتركيب معقمة ومغلقة', 'قسم ترقيات وتعديل الكيتات', 'استراحة VIP مكيفة للعملاء', 'مواقف خاصة واسعة'],
-    mapQuery: 'https://maps.google.com/?q=Salwa+Road+Doha+Qatar'
-  },
-  {
-    id: 'aziziyah',
-    name: 'فرع العزيزية',
-    area: 'العزيزية - الدوحة',
-    address: 'شارع العزيزية التجاري، بالقرب من استاد خليفة، الدوحة، قطر',
-    phone: '+974 4488 9900',
-    whatsapp: '97444889900',
-    hours: 'السبت - الخميس: 9:00 ص - 10:00 م | الجمعة: 4:00 م - 10:00 م',
-    features: ['قسم متخصص في العازل الحراري والتظليل', 'قسم تلميع وعناية سريعة PDR', 'أحدث أجهزة فحص ومعالجة الطلاء', 'خدمة استلام وتسليم السيارات'],
-    mapQuery: 'https://maps.google.com/?q=Al+Aziziyah+Doha+Qatar'
   }
 ];
